@@ -1,12 +1,23 @@
 # Marketing Campaign A/B Testing
 
-This repository analyses three promotional strategies for a fashion retail company using classical A/B testing techniques.  The aim is to determine which campaign drives the greatest lift in weekly sales and to provide actionable recommendations for future marketing rollouts.
+This repository analyses three promotional strategies for a fashion retail company using classical A/B testing techniques. The aim is to determine which campaign drives the greatest lift in weekly sales and to provide actionable recommendations for future marketing rollouts.
+
+## Problem Context
+
+FashionCo, a national retailer, is exploring different promotional tactics to boost revenue across its store network. To move beyond assumptions and anecdotal evidence, the company ran a four‑week experiment in which 137 outlets were randomly assigned to one of three campaigns:
+
+* **Control Group** – standard marketing spend with no additional incentives.
+* **Loyalty Bonus** – targeted rewards to encourage repeat purchases.
+* **Product Discount** – price reductions on selected items.
+
+Weekly sales were recorded along with store attributes such as market size and age. Management seeks to understand how each strategy affects revenue and which option should be deployed at scale.
 
 ## Project Objective
 
-* Evaluate the effectiveness of three marketing campaigns – **Control**, **Loyalty Bonus** and **Product Discount** – on product sales.
-* Quantify whether observed differences in weekly sales are statistically significant.
-* Recommend the most impactful campaign based on data‑driven evidence.
+* Provide a reproducible framework for testing promotional hypotheses using classical A/B testing.
+* Evaluate the effectiveness of three marketing campaigns – **Control**, **Loyalty Bonus** and **Product Discount** – on product sales across different market sizes and store ages.
+* Quantify whether observed differences in weekly sales are statistically significant and practically meaningful.
+* Recommend the most impactful campaign and describe the conditions under which it performs best.
 
 ## Getting Started
 
