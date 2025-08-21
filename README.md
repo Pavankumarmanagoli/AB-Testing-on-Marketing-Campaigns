@@ -1,103 +1,101 @@
-<h1 align='center'>Marketing Campaigns A/B Testing | 
-  Fashion Retail Case Study</h1>
+# Marketing Campaign A/B Testing
 
-This project uses A/B testing techniques in Python to determine which marketing campaign is most effective in driving product sales. The analysis evaluates and compares the impact of three different promotional strategies launched across randomly selected outlets of a fashion retail company.
+This repository analyses three promotional strategies for a fashion retail company using classical A/B testing techniques.  The aim is to determine which campaign drives the greatest lift in weekly sales and to provide actionable recommendations for future marketing rollouts.
 
-## Problem Context
+## Project Objective
 
-A fashion retail company is preparing to launch a new product as part of its apparel catalog expansion. However, the management is uncertain about which of the three proposed marketing campaigns would generate the highest product sales. To make an informed decision, they conduct an **A/B test** by deploying each campaign variant randomly across selected store outlets and tracking the weekly sales for a one-month period (4 weeks). The ultimate goal is to assess which campaign yields the best sales performance and should be adopted for a full-scale rollout.
+* Evaluate the effectiveness of three marketing campaigns – **Control**, **Loyalty Bonus** and **Product Discount** – on product sales.
+* Quantify whether observed differences in weekly sales are statistically significant.
+* Recommend the most impactful campaign based on data‑driven evidence.
 
-## Objectives
+## Getting Started
 
-The key objectives of this project are:
+### 1. Clone the repository
 
-1. **Compare the effectiveness** of three marketing campaigns (Campaign 1, Campaign 2, Campaign 3) using statistical analysis.
-2. **Identify statistically significant differences** in sales using appropriate A/B testing techniques.
-3. **Recommend** the most impactful campaign based on data-driven insights.
+```bash
+git clone https://github.com/Pavankumarmanagoli/AB-Testing-on-Marketing-Campaigns.git
+cd AB-Testing-on-Marketing-Campaigns
+```
 
+### 2. Install dependencies
 
-## Dataset Description
+Install the required Python packages. A virtual environment is recommended.
 
-The dataset contains **548 observations** with the following features:
+```bash
+pip install pandas numpy matplotlib seaborn scipy statsmodels jupyter
+```
 
-| Column Name        | Description                                                                                           |
-| ------------------ | ----------------------------------------------------------------------------------------------------- |
-| **OutletID**       | Unique identifier for each store location (total of 137 outlets).                                     |
-| **Market Size**    | Categorical variable indicating the outlet’s market size: `Small`, `Medium`, or `Large`.              |
-| **Age of Outlets** | Age of the store in years, ranging from 1 to 28.                                                      |
-| **Campaigns**      | Categorical variable specifying the campaign type: Control Group, Loyalty Bonus and Product Discount. |
-| **Week**           | Indicates the week number (1 to 4) the data point corresponds to.                                     |
-| **Sales ('000')**  | Sales revenue in thousands of dollars for the specific campaign, store, and week.                     |
+### 3. Run the analysis
 
+* **Jupyter Notebook**: launch the notebook for an interactive walkthrough of the analysis.
 
+  ```bash
+  jupyter notebook 01_AB_Testing_Statistical__Analysis.ipynb
+  ```
+
+* **Scripts**: individual statistical tests are implemented as standalone scripts in the `Scripts/` directory.  For example, to run a one‑way ANOVA:
+
+  ```python
+  import pandas as pd
+  from Scripts.anova import One_way_anova
+
+  data = pd.read_csv("Datasets/marketing_campaign_data.csv")
+  results = One_way_anova(data, ["Sales ('000')"], ["Campaigns"])
+  print(results)
+  ```
+
+## Dataset
+
+The dataset (`Datasets/marketing_campaign_data.csv`) contains 548 records describing weekly sales for randomly selected store outlets.
+
+| Column | Description |
+| ------ | ----------- |
+| `OutletID` | Unique identifier for each store (137 outlets). |
+| `Market Size` | Size of the market: Small, Medium or Large. |
+| `Age of Outlets` | Age of the store in years. |
+| `Campaigns` | Campaign type: Control Group, Loyalty Bonus or Product Discount. |
+| `Week` | Week number (1–4) of the trial. |
+| `Sales ('000')` | Sales in thousands of dollars for the given week and campaign. |
 
 ## Methodology
 
-1. **Data Preparation and Exploration**
+1. **Data exploration** – load the dataset, compute summary statistics and visualise distributions.
+2. **Assumption checks** – assess normality (Shapiro‑Wilk) and homogeneity of variances (Levene’s test).
+3. **One‑way ANOVA** – test whether mean sales differ across campaigns.
+4. **Pairwise t‑tests** – compare campaign pairs to identify where differences occur.
+5. **Tukey’s HSD** – control for multiple comparisons in post‑hoc analysis.
+6. **Compact Letter Display** – summarise Tukey results for easy interpretation.
+7. **Business interpretation** – translate statistical findings into marketing recommendations.
 
-   * Load and inspect the dataset using `pandas`.
-   * Generate summary statistics .
-   * Visualize data distribution.
+## Repository Structure
 
-2. **Assumption Testing for Parametric Tests**
-   a. **Normality Check**
+```
+├── Datasets/                     # Raw data files
+├── Outputs/                      # Generated figures and tables
+├── Scripts/                      # Reusable analysis scripts
+└── *.ipynb                       # Jupyter notebooks containing full analysis
+```
 
-   * Perform **Shapiro-Wilk test** for each group.
-   * Visualize with **Q-Q plots** to confirm normality.
-     b. **Homogeneity of Variance**
-   * Use **Levene’s test** to test if group variances are equal.
+## Technologies Used
 
-3. **One-Way ANOVA (Analysis of Variance)**
-
-   * Conduct a one-way ANOVA to determine if there are statistically significant differences in mean sales among the three campaigns.
-
-4. **Independent Samples t-Tests (Pairwise Comparison)**
-
-   * Perform **pairwise independent t-tests** between each combination of campaign groups.
-   * Identify which specific pairs show significant differences in mean sales.
-
-5. **Post-Hoc Analysis: Tukey’s HSD**
-
-   * Apply **Tukey’s Honest Significant Difference** test to control for multiple comparisons.
-   * Identify exactly which campaign pairs are significantly different.
-
-6. **Compact Letter Display (CLD)**
-
-   * Summarize Tukey’s HSD results using **Compact Letter Display**.
-   * Assign letters to groups: same letters = not significantly different; different letters = significantly different.
-
-7. **Result Interpretation and Business Insights**
-
-   * Compile a summary table of mean ± SE, group letters, and p-values.
-   * Translate findings into business recommendations for selecting the optimal marketing strategy.
-
-
-## 🛠️ Technologies Used
-
-* **Python** – Core programming language for data analysis and statistical modeling
-* **Pandas** – Data manipulation and preprocessing
-* **NumPy** – Numerical operations and array handling
-* **Matplotlib** – Data visualization
-* **Seaborn** – Enhanced statistical plots
-* **SciPy (scipy.stats)** – Statistical tests (Shapiro-Wilk, Levene’s test, t-tests)
-* **Statsmodels** – ANOVA, Tukey HSD, regression modeling, and statistical summaries
-* **Jupyter Notebook** – Interactive development environment for code, visualizations, and documentation
-* **Compact Letter Display (custom logic)** – For summarizing post-hoc comparison results in an interpretable format
-
-
-
-
+* Python
+* pandas
+* NumPy
+* Matplotlib & Seaborn
+* SciPy
+* Statsmodels
+* Jupyter Notebook
 
 ## Results Summary
 
-* ANOVA and post-hoc tests confirmed statistically significant differences between some campaigns.
-* Campaign performance differed significantly, with the **Loyalty Bonus campaign** showing the highest average sales.
-* Loyalty Bonus and Control campaigns performed similarly with high sales, while Product Discount significantly underperformed; thus, loyalty rewards sustain or boost sales, whereas discounts can harm brand value and profitability.
-* Market size played a supporting role, with **large markets** performing better overall.
-
+* ANOVA and post‑hoc tests reveal significant differences among campaigns.
+* **Loyalty Bonus** produces the highest average sales and performs on par with the control group.
+* **Product Discount** underperforms and may erode brand value, particularly in smaller markets.
 
 ## Conclusion
 
-A/B testing revealed that marketing campaign type significantly impacts sales performance. Loyalty Bonus campaigns effectively maintain or increase sales, performing on par with standard control conditions, while Product Discount campaigns tend to reduce sales and may negatively affect brand perception. Additionally, larger markets generally yield better sales outcomes. These findings suggest that businesses should prioritize loyalty-based incentives over discounting strategies to enhance profitability and sustain customer value.
+A/B testing confirmed that marketing strategy has a measurable impact on sales.  Loyalty‑based incentives are the most effective, while discounting tends to depress revenue.  The analysis supports deploying the Loyalty Bonus campaign for a wider rollout.
 
 
+## License
+This project is licensed under the [MIT License](LICENSE).
