@@ -1,4 +1,5 @@
-<h1 align='center'>Marketing Campaigns A/B Testing | Fashion Retail Case Study</h1>
+<h1 align='center'>Marketing Campaigns A/B Testing | 
+  Fashion Retail Case Study</h1>
 
 This project uses A/B testing techniques in Python to determine which marketing campaign is most effective in driving product sales. The analysis evaluates and compares the impact of three different promotional strategies launched across randomly selected outlets of a fashion retail company.
 
@@ -99,17 +100,4 @@ The dataset contains **548 observations** with the following features:
 
 A/B testing revealed that marketing campaign type significantly impacts sales performance. Loyalty Bonus campaigns effectively maintain or increase sales, performing on par with standard control conditions, while Product Discount campaigns tend to reduce sales and may negatively affect brand perception. Additionally, larger markets generally yield better sales outcomes. These findings suggest that businesses should prioritize loyalty-based incentives over discounting strategies to enhance profitability and sustain customer value.
 
-## 👨‍💻 Author
 
-
-This analysis was performed by **Jabulente**, a passionate and dedicated data analyst with a strong commitment to using data to drive meaningful insights and solutions. For inquiries, collaborations, or further discussions, please feel free to reach out via.  
-
-----
-
-<div align="center">  
-    
-[![GitHub](https://img.shields.io/badge/GitHub-Jabulente-black?logo=github)](https://github.com/Jabulente)  [![LinkedIn](https://img.shields.io/badge/LinkedIn-Jabulente-blue?logo=linkedin)](https://linkedin.com/in/jabulente-208019349)  [![Email](https://img.shields.io/badge/Email-jabulente@hotmail.com-red?logo=gmail)](mailto:Jabulente@hotmail.com)  
-
-</div>
-
-----
